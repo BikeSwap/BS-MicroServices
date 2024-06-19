@@ -1,13 +1,14 @@
 package pe.edu.bikeswap.rental_service.domain.service;
 
-import pe.edu.bikeswap.rental_service.domain.model.rental;
+import pe.edu.bikeswap.rental_service.domain.model.Rental;
 
 import java.util.List;
 
 public interface RentalService {
-    rental create(rental rental);
-    List<rental> getAll();
-    rental getById(Long rentalId);
+    Rental create(Rental rental);
+    List<Rental> getAll();
+    Rental getById(Long rentalId);
+    Rental update(Long rentalId, Rental rental);
     void delete(Long rentalId);
-    List<rental> getByBicycleId(Long bicycleId);
+    //List<Rental> getByBicycleId(Long bicycleId);
 }

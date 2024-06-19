@@ -65,9 +65,9 @@ public class BikeServiceImpl implements BikeService {
         return availableBicycles;
     }
 
-    private void existsBicycleByBicycleId(Long bicycleId) {
-        if (!bikeRepository.existsById(bicycleId)) {
-            throw new ResourceNotFoundException("No existe la bicicleta con el id: " + bicycleId);
+        private void existsBicycleByBicycleId(Long bicycleId) {
+            if (!bikeRepository.existsById(bicycleId)) {
+                throw new ResourceNotFoundException("No existe la bicicleta con el id: " + bicycleId);
+            }
         }
-    }
 }
