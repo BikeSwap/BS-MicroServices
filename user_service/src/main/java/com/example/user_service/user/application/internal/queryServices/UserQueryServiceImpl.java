@@ -20,4 +20,9 @@ public class UserQueryServiceImpl implements UserQueryService {
 
     @Override
     public List<User>getAllUsers(){return userRepository.findAll();}
+
+    @Override
+    public Optional<User> getByEmailAndPassword(String email, String password){
+        return userRepository.findByEmailAndPassword(email,password);
+    }
 }

@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface UserQueryService {
     Optional<User> handle(GetUserById userById);
     List<User>getAllUsers();
+    Optional<User> getByEmailAndPassword(String email, String password);
 }

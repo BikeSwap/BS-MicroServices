@@ -8,6 +8,7 @@ import com.example.user_service.user.interfaces.rest.resource.CreateUserResource
 import com.example.user_service.user.interfaces.rest.resource.UserResource;
 import com.example.user_service.user.interfaces.rest.transform.CreateUserCommandFromResourceAssembler;
 import com.example.user_service.user.interfaces.rest.transform.UserResourceFromEntityAssembler;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +17,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping(value = "/api/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated
@@ -41,6 +44,13 @@ public class UserController {
         var userResource= UserResourceFromEntityAssembler.toResourceFromEntity(user.get());
         return new ResponseEntity<>(userResource, HttpStatus.CREATED);
     }
+
+    @Operation(summary="Get user by email and password")
+    @GetMapping("/login")
+    public Optional<User> getUserByEmailAndPassword(@RequestParam String email, @RequestParam String password){
+        return userQueryService.getByEmailAndPassword(email,password);
+    }
+
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserResource>getUserById(@PathVariable Long userId){
