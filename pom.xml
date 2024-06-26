@@ -28,6 +28,7 @@
 		<module>user_service</module>
 		<module>post-service</module>
 		<module>reports-service</module>
+		<module>rental-service</module>
 	</modules>
 
 	<dependencies>
