@@ -5,6 +5,7 @@ import com.example.user_service.user.domain.model.querys.GetUserById;
 import com.example.user_service.user.domain.services.UserCommandService;
 import com.example.user_service.user.domain.services.UserQueryService;
 import com.example.user_service.user.interfaces.rest.resource.CreateUserResource;
+import com.example.user_service.user.interfaces.rest.resource.LoginResource;
 import com.example.user_service.user.interfaces.rest.resource.UserResource;
 import com.example.user_service.user.interfaces.rest.transform.CreateUserCommandFromResourceAssembler;
 import com.example.user_service.user.interfaces.rest.transform.UserResourceFromEntityAssembler;
@@ -45,10 +46,14 @@ public class UserController {
         return new ResponseEntity<>(userResource, HttpStatus.CREATED);
     }
 
-    @Operation(summary="Get user by email and password")
-    @GetMapping("/login")
-    public Optional<User> getUserByEmailAndPassword(@RequestParam String email, @RequestParam String password){
-        return userQueryService.getByEmailAndPassword(email,password);
+    @PostMapping("/login")
+    public ResponseEntity<UserResource> login (@RequestBody LoginResource loginResource){
+        var user = userQueryService.getByEmailAndPassword(loginResource.email(), loginResource.password());
+        if (user.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        var userResource = UserResourceFromEntityAssembler.toResourceFromEntity(user.get());
+        return ResponseEntity.ok(userResource);
     }
 
 

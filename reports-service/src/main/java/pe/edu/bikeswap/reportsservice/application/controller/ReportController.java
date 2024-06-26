@@ -8,7 +8,7 @@ import pe.edu.bikeswap.reportsservice.domain.service.ReportService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api/v1/reports")
 public class ReportController {

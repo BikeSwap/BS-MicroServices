@@ -21,7 +21,7 @@ import pe.edu.bikeswap.rentalservice.rental.interfaces.rest.transform.RentalReso
 import pe.edu.bikeswap.rentalservice.rental.interfaces.rest.transform.UpdateRentalCommandFronResourceAssembler;
 
 import java.util.List;
-
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping(value = "/api/v1/rentals", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated
